@@ -1,4 +1,4 @@
-OrderBooks (solution)
+OrderBooks
 ~~~~~~~~~~~~~~~~~
 
 # 1. Implement an orderbook that can read in a sequence of limit orders and print out the trades that occur. For each trade, please print the side of the order that triggered the trade, price, and size of the trade.
