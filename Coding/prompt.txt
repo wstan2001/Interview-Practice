@@ -1,5 +1,23 @@
 OrderBooks
 ~~~~~~~~~~~~~~~~~
+An order book is a data structure that stores and organizes limit orders that have 
+been placed in a market. Limit orders represent a desire to buy or sell shares of 
+a contract, and are characterized by four properties:
+  - id: an integer, guaranteed to be unique and monotonically increasing for this 
+        problem
+  - side: either "Bid" or "Ask", representing the direction of the order (Buy/Sell)
+  - price: the highest price one is willing to buy shares at, or the lowest price one
+           is willing to sell shares at
+  - size: how many shares to buy or sell
+
+When a buy limit order has a price that is greater than or equal to the price of a 
+sell limit order, the orders are said to "cross" and a trade will occur at the price 
+of whichever limit order was placed first.
+
+If a new order crosses with multiple resting orders, the resting order with the "best 
+price" (highest for buy, lowest for sell) is executed against first, and ties in price
+are broken by order placement time, with the earliest order getting executed against 
+first. This is known as price-time priority.
 
 # 1. Implement an orderbook that can read in a sequence of limit orders and print out the trades that occur. For each trade, please print the side of the order that triggered the trade, price, and size of the trade.
 
