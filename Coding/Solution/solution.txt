@@ -1,0 +1,89 @@
+OrderBooks (solution)
+~~~~~~~~~~~~~~~~~
+
+# 1. Implement an orderbook that can read in a sequence of limit orders and print out the trades that occur. For each trade, please print the side of the order that triggered the trade, price, and size of the trade.
+
+Input format: A list of limit orders of the form (id, side, limit price, size).
+
+Ex. [
+	(1, "Bid", 99.95, 500),
+	(2, "Bid", 99.99, 100),
+	(3, "Ask", 100.02, 300),
+	(4, "Bid", 100.05, 200),
+]
+
+Output: [
+	("Bid", 100.02, 200),
+]
+
+Ex. [
+	(1, "Ask", 56.48, 100),
+	(2, "Ask", 56.59, 500),
+	(3, "Ask", 56.55, 200),
+	(4, "Bid", 55.95, 300),
+	(5, "Bid", 57.00, 1000),
+]
+
+Output: [
+	("Bid", 56.48, 100),
+	("Bid", 56.55, 200),
+	("Bid", 56.59, 500),
+]
+
+Answer: Note that this problem is pretty open ended, so the solution here is a suggested solution, not necessarily the most optimal one.
+
+We want a data structure to store orders and keep them sorted by price-time priority so that checking for crosses is efficient. The operations we need to support are:
+ - insert
+ - query min (for asks) / max (for bids)
+ - remove min (for asks) / max (for bids)
+
+There are a few reasonable implementations for this:
+ - balanced binary tree, O(log n) for all ops
+ - min/max heap, O(log n) insertion and remove min/max, O(1) min/max lookup
+ - sorted linked list, O(n) insertion, O(1) min/max lookup and min/max removal
+
+The implementation I went with is the sorted linked list. Insertion seems to suffer here, but most of the limit orders we receive should be closer to the top of the book rather than far away from the book, so actually insertion is pretty close to O(1) most of the time.  
+
+# 2. Some clients would like to cancel their orders. A cancel request will be represented as a tuple of a single integer of the form (id). Please cancel the order with the given id.
+
+Ex. [
+	(1, "Bid", 90.91, 300),
+	(2, "Bid", 90.80, 500),
+	(3, "Ask", 91.02, 200),
+	(1,),			# cancel!
+	(4, "Ask", 90.70, 300),
+]
+
+Output: [
+	("Ask", 90.80, 300),
+]
+
+Ex. [
+	(1, "Bid", 9.52, 300),
+	(2, "Ask", 10.01, 100),
+	(3, "Ask", 10.05, 100),
+	(4, "Ask", 10.02, 100),
+	(5, "Ask", 10.04, 100),
+	(6, "Ask", 10.10, 3000),
+	(5,),			# cancel!
+	(3,),			# cancel!
+	(4,), 			# cancel!
+	(7, "Bid", 11, 1000),
+]
+
+Output: [
+	("Bid", 10.01, 100),
+	("Bid", 10.10, 900),
+]
+
+Answer: We want to support a new operation that allows us to cancel a random order from the book. One thing we can do is augment our OrderBook data structure with a hash table keyed by order id that points to the limit order in our main data structure. This provides us with O(1) lookup of a random order and takes up only O(1) insertion/deletion overhead and O(n) memory. This hash table approach should work no matter what data structure we used to implement the order book.
+
+Let's look at the computational complexity of a delete operation for each of the possible implementations from part 1:
+ - balanced binary tree, O(log n) deletion
+ - min/max heap, O(log n) deletion
+ - sorted linked list, O(1) deletion
+
+The linked list is the winner here assuming we can look up the node we want to delete in O(1) time. 
+
+
+

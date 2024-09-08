@@ -1,0 +1,68 @@
+OrderBooks (solution)
+~~~~~~~~~~~~~~~~~
+
+# 1. Implement an orderbook that can read in a sequence of limit orders and print out the trades that occur. For each trade, please print the side of the order that triggered the trade, price, and size of the trade.
+
+Input format: A list of limit orders of the form (id, side, limit price, size).
+
+Ex. [
+	(1, "Bid", 99.95, 500),
+	(2, "Bid", 99.99, 100),
+	(3, "Ask", 100.02, 300),
+	(4, "Bid", 100.05, 200),
+]
+
+Output: [
+	("Bid", 100.02, 200),
+]
+
+Ex. [
+	(1, "Ask", 56.48, 100),
+	(2, "Ask", 56.59, 500),
+	(3, "Ask", 56.55, 200),
+	(4, "Bid", 55.95, 300),
+	(5, "Bid", 57.00, 1000),
+]
+
+Output: [
+	("Bid", 56.48, 100),
+	("Bid", 56.55, 200),
+	("Bid", 56.59, 500),
+]
+
+# 2. Some clients would like to cancel their orders. A cancel request will be represented as a tuple of a single integer of the form (id). Please cancel the order with the given id.
+
+Ex. [
+	(1, "Bid", 90.91, 300),
+	(2, "Bid", 90.80, 500),
+	(3, "Ask", 91.02, 200),
+	(1,),			# cancel!
+	(4, "Ask", 90.70, 300),
+]
+
+Output: [
+	("Ask", 90.80, 300),
+]
+
+Ex. [
+	(1, "Bid", 9.52, 300),
+	(2, "Ask", 10.01, 100),
+	(3, "Ask", 10.05, 100),
+	(4, "Ask", 10.02, 100),
+	(5, "Ask", 10.04, 100),
+	(6, "Ask", 10.10, 3000),
+	(5,),			# cancel!
+	(3,),			# cancel!
+	(4,), 			# cancel!
+	(7, "Bid", 11, 1000),
+]
+
+Output: [
+	("Bid", 10.01, 100),
+	("Bid", 10.10, 900),
+]
+
+
+
+
+
