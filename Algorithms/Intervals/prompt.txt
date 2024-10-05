@@ -1,0 +1,31 @@
+~~~~~~~~~~~~~~~~~~~~~~
+Intervals
+~~~~~~~~~~~~~~~~~~~~~~
+
+In both parts of this problem you are given a list of open intervals of the form (a, b) with a < b. Recall that open intervals do not include their endpoints. The input format will be
+
+input: list[tuple(int, int)]
+
+and you will compute different statistics about the list of intervals you are given.
+
+----------------------------------------------------------------------------------------
+
+1. Return a boolean value indicating if any pair of intervals in the given list intersect.
+
+Ex. [(6,10),(15,25),(12,13),(-3,0),(0,5)]
+Ans: False
+
+Ex. [(18,42),(10,12),(5,11),(-10,4),(0,6)]
+Ans: True
+
+----------------------------------------------------------------------------------------
+
+2. (Generalization of part 1) Return the number of pairs of intervals that intersect each other.
+
+Ex. [(6,10),(15,25),(12,13),(-3,0),(0,5)]
+Ans: 0
+
+Ex. [(18,42),(10,12),(5,11),(-10,4),(0,6)]
+Ans: 3
+
+----------------------------------------------------------------------------------------
