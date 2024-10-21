@@ -1,0 +1,22 @@
+24
+~~~~~~~~~~~~~~~~~
+In the game of 24, you are given four positive integers and asked to use a combination of the arithmetic operations +, -, *, /, along with parentheses () to try to obtain a total of 24. Implement a solver that takes in four positive integers are returns true if it is possible to form a total of 24 using these legal operations.
+
+Ex. [ 5, 7, 3, 3 ]
+Output: True (((5 * 3) - 7) * 3)
+
+Ex. [ 10, 11, 12, 13 ]
+Output: True (10 - 11 + 12 + 13)
+
+Ex. [ 3, 3, 3, 3 ]
+Output: True (3 * 3 * 3 - 3)
+
+Ex. [ 9, 1, 2, 10 ]
+Output: False
+
+Ex. [ 144, 1, 2, 3 ]
+Output: True (144 / 1 / 2 / 3)
+
+Ex. [ 2, 3, 5, 12 ]
+Output: ??? ;)
+

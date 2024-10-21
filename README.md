@@ -3,6 +3,7 @@ Some practice problems to help users brush up on pandas and coding for interview
 
 * Coding
     * design and implement an order book
+    * implement a solver for the game of 24
 * Algorithms
     * a collection of quick exercises to review algorithms and data structures
 * Open-ended Modeling
